@@ -33,6 +33,12 @@ class ScribeEditor extends Component {
   componentDidMount() {
     const editor = findDOMNode(this.refs.editor);
     const scribe = new Scribe(editor);
+	  
+	if(this.props.onScribeReady){
+		this.props.onScribeReady(scribe)
+	}  
+	
+	  
     const toolbarElement = findDOMNode(this.refs.toolbar);
     for (const i in this.parseConfig()['plugins']) {
       scribe.use(this.parseConfig()['plugins'][i]);
@@ -117,6 +123,7 @@ ScribeEditor.propTypes = {
   ),
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
+  onScribeReady: PropTypes.any,
   value: PropTypes.string
 };
 
