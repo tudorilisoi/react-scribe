@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import _ from 'lodash';
+import _get from 'lodash.get';
 import { findDOMNode } from 'react-dom';
 import optionMap from './optionMap';
 import Scribe from 'scribe-editor';
@@ -77,7 +77,7 @@ class ScribeEditor extends Component {
       'plugins': []
     };
     config.forEach( cmd => {
-      const command = _.get(optionMap, cmd);
+      const command = _get(optionMap, cmd);
       if (command) {
         if (command.hasOwnProperty('action')) {
           newConfig.plugins.push(command.action);
